@@ -22,7 +22,7 @@ The panel has been checked against real people for **group differences and ranki
 | **Score spread** | Panel scores spread out less than real respondents'. Real people use the ends of the scale far more. |
 | **One model** | The same model builds the panel, rates the content and writes the report, so blind spots are shared. |
 | **Subgroups** | Simulated respondents are least faithful for some groups (for example conservatives, people with lower education and minorities). The panel has not been checked per group. |
-| **Personality outside the US** | Personality traits come from US survey data. Only demographics are local to other countries. |
+| **Personality outside the US** | Demographics are local to the country you choose, and general personality is nudged a little towards that country. Attitudes such as price sensitivity and privacy concern still come from US surveys, because comparable local data is hard to find and we would rather say so than guess. For a non-US audience, treat differences between groups with extra caution. |
 | **Languages** | Persona backstories are only checked for contradictions in English. |
 | **Images** | Scoring from the image itself, an upload or a page screenshot, has not been checked against real ratings as thoroughly as text. |
 | **Page text only** | If no screenshot can be captured, personas judge the text only and the report says so. |
