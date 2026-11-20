@@ -38,6 +38,17 @@ The panel has been checked against real people for **group differences and ranki
 - Every claim in the narrative lists the **reactions it relies on**.
 - Reports carry a **methodology** section and a plain-language caveat.
 
+## The research behind the panel
+
+The panel's people are not invented freehand. Their personalities and attitudes follow published research, so the mix of a panel is deliberate and you can see where it comes from.
+
+- **How personality varies with age and sex:** Donnellan and Lucas (2008), Weisberg and colleagues (2011), and Schmitt and colleagues (2008).
+- **How personality varies between countries:** Schmitt and colleagues (2007), a 56-country study. It is the only broad source, so it is used lightly: people rate themselves against their own country's standards, which makes country averages hard to compare (Heine and colleagues, 2008).
+- **Attitudes such as privacy concern, price sensitivity and openness to new products:** Pew Research Center (2019) for privacy, the Twin-2K dataset (Toubia and colleagues, 2025) for most others, and Rogers' *Diffusion of Innovations* (2003) for how quickly people take up new things.
+- **How closely panels follow real people:** checked against Twin-2K and the PVP persuasion ratings (Choi and colleagues, 2025).
+
+We say where the research is thin, as with attitudes outside the US above, rather than fill the gap with a guess.
+
 ## Good uses
 
 - Choosing between two drafts before you spend on traffic.
