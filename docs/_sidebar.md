@@ -1,0 +1,30 @@
+- [Home](/)
+- Getting Started
+  - [What is Presay?](getting-started/overview.md)
+  - [Create an Account](getting-started/account.md)
+  - [Your First Study](getting-started/first-study.md)
+- Studies
+  - [Study Types](studies/types.md)
+  - [Choosing a Target](studies/targets.md)
+  - [Audience & Sample Size](studies/audience.md)
+  - [Running & Managing Studies](studies/running.md)
+- Reports
+  - [Reading a Report](reports/reading.md)
+  - [Metrics](reports/metrics.md)
+  - [Segments & Reactions](reports/segments.md)
+  - [Accept or Revise](reports/decision.md)
+  - [Share & Export](reports/share-export.md)
+- Drafts
+  - [Improve & Retest](drafts/retest.md)
+- Audiences
+  - [Audience Library](audiences/library.md)
+  - [Import from a File](audiences/import.md)
+- AI Assistants
+  - [Connect an Assistant (MCP)](ai/mcp.md)
+  - [Browser Extension](ai/extension.md)
+- Account
+  - [Limits & Usage](account/limits.md)
+  - [Settings & Privacy](account/settings.md)
+- Trust
+  - [Limits of Synthetic Research](limits.md)
+  - [FAQ](faq.md)
