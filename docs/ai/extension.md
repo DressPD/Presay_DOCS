@@ -7,7 +7,7 @@ The Presay extension lives in the Chrome side panel so you can test a page you a
 ## Journey
 
 1. **Sign in** with your Presay email and password. No separate window or redirect tab opens.
-2. On **Home**, **capture** the page, a selected area, or selected text.
+2. On **Home**, choose **Selected text**, **Visible screen** or **Image**, or use the toolbar button or right-click **Test with Presay** / **Test selected text with Presay**. Only the viewport is captured, not the full page.
 3. **Review** the capture: choose the audience and sample size.
 4. **Run** the study and read the result in the panel.
 5. Optionally **Test a revision**.

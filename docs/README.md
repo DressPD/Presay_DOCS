@@ -26,7 +26,7 @@ Presay pre-tests a page, ad, image or message against a panel of synthetic (AI-g
 
 ## Where to start
 
-- New here? Read [What is Presay?](/getting-started/overview.md), then run [Your First Study](/getting-started/first-study.md).
+- New here? Read [What is Presay?](/getting-started/overview.md), see the [three ways to use it](/getting-started/ways-to-use.md), then run [Your First Study](/getting-started/first-study.md).
 - Have a report open? [Reading a Report](/reports/reading.md) explains every part of it.
 - Want an assistant to do the work? [Connect an Assistant](/ai/mcp.md).
 

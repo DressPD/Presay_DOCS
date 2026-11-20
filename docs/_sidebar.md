@@ -1,6 +1,7 @@
 - [Home](/)
 - Getting Started
   - [What is Presay?](getting-started/overview.md)
+  - [Ways to Use Presay](getting-started/ways-to-use.md)
   - [Create an Account](getting-started/account.md)
   - [Your First Study](getting-started/first-study.md)
 - Studies
