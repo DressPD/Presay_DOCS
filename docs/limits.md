@@ -22,7 +22,7 @@ The panel has been checked against real people for **group differences and ranki
 | **Score spread** | Panel scores spread out less than real respondents'. Real people use the ends of the scale far more. |
 | **One model** | The same model builds the panel, rates the content and writes the report, so blind spots are shared. |
 | **Subgroups** | Simulated respondents are least faithful for some groups (for example conservatives, people with lower education and minorities). The panel has not been checked per group. |
-| **Personality outside the US** | Demographics are local to the country you choose, and general personality is nudged a little towards that country. For countries in the European Union and the UK, privacy concern also follows how European surveys differ by country. Most other attitudes, such as price sensitivity and brand loyalty, still come from US surveys, because comparable local data is hard to find and we would rather say so than guess. For a non-US audience, treat differences between groups with extra caution. |
+| **Personality outside the US** | Demographics are local to the country you choose, and general personality is nudged a little towards that country. Privacy concern follows surveys that compared countries, and how generously people rate follows how countries differ in answering questionnaires. Most other attitudes, such as price sensitivity and brand loyalty, still come from US surveys, because comparable local data is hard to find and we would rather say so than guess. For a non-US audience, treat differences between groups with extra caution. |
 | **Languages** | Persona backstories are only checked for contradictions in English. |
 | **Images** | Scoring from the image itself, an upload or a page screenshot, has not been checked against real ratings as thoroughly as text. |
 | **Page text only** | If no screenshot can be captured, personas judge the text only and the report says so. |
@@ -40,14 +40,21 @@ The panel has been checked against real people for **group differences and ranki
 
 ## The research behind the panel
 
-The panel's people are not invented freehand. Their personalities and attitudes follow published research, so the mix of a panel is deliberate and you can see where it comes from.
+The panel's people are not invented freehand. Their personalities and attitudes follow published research, so the mix of a panel is deliberate and you can see where it comes from. This is what each source is used for and why.
 
-- **How personality varies with age and sex:** Donnellan and Lucas (2008), Weisberg and colleagues (2011), and Schmitt and colleagues (2008).
-- **How personality varies between countries:** Schmitt and colleagues (2007), a 56-country study. It is the only broad source, so it is used lightly: people rate themselves against their own country's standards, which makes country averages hard to compare (Heine and colleagues, 2008).
-- **Attitudes such as privacy concern, price sensitivity and openness to new products:** Pew Research Center (2019) for privacy in the US, the European Commission's Special Eurobarometer on data protection (2019) for how privacy concern differs across Europe, the Twin-2K dataset (Toubia and colleagues, 2025) for several others, and Rogers' *Diffusion of Innovations* (2003) for how quickly people take up new things.
-- **How closely panels follow real people:** checked against Twin-2K and the PVP persuasion ratings (Choi and colleagues, 2025).
+**Personality**
 
-We say where the research is thin, as with attitudes outside the US above, rather than fill the gap with a guess.
+- Donnellan and Lucas (2008), [*Age differences in the Big Five across the life span*](https://pubmed.ncbi.nlm.nih.gov/18808245): how personality tends to differ between younger and older people.
+- Weisberg, DeYoung and Hirsh (2011), [*Gender differences in personality across the ten aspects of the Big Five*](https://www.frontiersin.org/articles/10.3389/fpsyg.2011.00178/full), and Schmitt and colleagues (2008), [*Why can't a man be more like a woman?*](https://pubmed.ncbi.nlm.nih.gov/18179326/): how personality tends to differ between women and men.
+- Schmitt and colleagues (2007), [*The geographic distribution of Big Five personality traits*](https://www.um.edu.mt/library/oar/bitstream/123456789/21679/1/The%20geographic%20distribution%20of%20Big%20Five%20personality%20traits%20Patterns%20and%20profiles%20of%20human%20self-description%20across%2056%20nations.pdf): how personality averages and the habit of agreeing with questions differ across 56 countries. It is the only broad source, so it is used lightly. People rate themselves against their own country's standards, which makes country averages hard to compare (Heine, Buchtel and Norenzayan, 2008, [*What do cross-national comparisons of personality traits tell us?*](https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.2008.02085.x/)).
+
+**Attitudes**
+
+- Privacy concern: Pew Research Center (2019), [*Americans and Privacy*](https://www.pewresearch.org/internet/2019/11/15/americans-and-privacy-concerned-confused-and-feeling-lack-of-control-over-their-personal-information/), for the US. For other countries, the CIGI-Ipsos [*Global Survey on Internet Security and Trust*](https://www.cigionline.org/cigi-ipsos-global-survey-internet-security-and-trust/) (2019), which asks the same question in 25 countries, and the European Commission's [Special Eurobarometer on data protection](https://europa.eu/eurobarometer/surveys/detail/2222) (2019) for how EU countries compare with each other. Countries with no figure of their own take their world region's average.
+- Openness to new products: Rogers, *Diffusion of Innovations* (2003), for how quickly different people take up new things.
+- Other attitudes and how they go together: the [Twin-2K dataset](https://huggingface.co/datasets/LLM-Digital-Twin/Twin-2K-500) (Toubia and colleagues, 2025), and for persuasion the [PVP ratings](https://github.com/holi-lab/PVP_Personalized_Visual_Persuasion) (Choi and colleagues, 2025). Both are also used to check that panels behave like real people.
+
+Where the research is thin, as with attitudes outside the US above, we say so rather than fill the gap with a guess.
 
 ## Good uses
 
