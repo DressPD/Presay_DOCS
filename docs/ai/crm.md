@@ -23,6 +23,19 @@ This page shows where a CRM asks for an MCP server and what to enter. For assist
 
 Each person who uses Presay from a CRM needs their own [Presay account](/getting-started/account.md).
 
+## OAuth or API key?
+
+**OAuth.** Presay has no API key or personal access token, on purpose: every connection is a person signing in and approving access, which you can revoke under **Settings, AI agents**. A CRM must therefore support OAuth to connect.
+
+What each CRM documents (checked November 2026):
+
+| | OAuth | API key or bearer token |
+| --- | --- | --- |
+| **Salesforce** | Yes. External MCP servers use OAuth 2.0 (or no authentication). Salesforce describes both a per-user flow and a client-credentials service account. One third-party write-up says only client credentials work, so check what your org offers. | Not documented for external MCP servers |
+| **HubSpot** | Yes, and only OAuth 2.1 with PKCE for a custom MCP server component | Not documented. The only token-in-URL case is a fixed connector (Zapier), not a custom server |
+
+Presay supports the authorization-code flow with PKCE, which is what both CRMs' per-user paths use. It does **not** support client credentials, so a Salesforce service-account setup will not work.
+
 ## Salesforce (Agentforce)
 
 Salesforce can register an external MCP server and expose its tools as actions for an Agentforce agent. Salesforce documents two Setup paths, depending on release. Use the one your org shows.
