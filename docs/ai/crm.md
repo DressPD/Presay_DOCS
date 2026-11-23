@@ -31,7 +31,7 @@ What each CRM documents (checked November 2026):
 
 | | OAuth | API key or bearer token |
 | --- | --- | --- |
-| **Salesforce** | Yes. External MCP servers use OAuth 2.0 (or no authentication). Salesforce describes both a per-user flow and a client-credentials service account. One third-party write-up says only client credentials work, so check what your org offers. | Not documented for external MCP servers |
+| **Salesforce** | OAuth 2.0 or no authentication. Whether the per-user authorization-code flow exists is disputed: Salesforce's blog says yes, a September 2026 write-up says only client credentials. Presay supports the first, not the second. | Not documented for external MCP servers |
 | **HubSpot** | Yes, and only OAuth 2.1 with PKCE for a custom MCP server component | Not documented. The only token-in-URL case is a fixed connector (Zapier), not a custom server |
 
 Presay supports the authorization-code flow with PKCE, which is what both CRMs' per-user paths use. It does **not** support client credentials, so a Salesforce service-account setup will not work.
@@ -39,6 +39,8 @@ Presay supports the authorization-code flow with PKCE, which is what both CRMs' 
 ## Salesforce (Agentforce)
 
 Salesforce can register an external MCP server and expose its tools as actions for an Agentforce agent. Salesforce documents two Setup paths, depending on release. Use the one your org shows.
+
+> **Warning: Salesforce may not connect to Presay yet.** Sources disagree about how Agentforce signs in to an outside MCP server. A September 2026 write-up says it supports only **no authentication or OAuth 2.0 client credentials**, with no authorization-code flow, PKCE or dynamic registration. Salesforce's own blog describes a per-user option. The registration form asks only for an identity provider URL, client ID, client secret and scopes, with no authorization URL, which fits client credentials. Presay signs in a person with the authorization-code flow and PKCE, and does **not** offer client credentials. If your org only offers client credentials, it will not connect. Try the per-user option first, and tell us what your org shows.
 
 Sources: Salesforce Help, [Register a Third-Party MCP Server in Agentforce Registry](https://help.salesforce.com/s/articleView?language=en_US&id=ai.agent_mcp_connect_register.htm&type=5) and [Register External MCP Servers in API Catalog](https://help.salesforce.com/s/articleView?language=en_US&id=platform.api_catalog_manage_manual_external_mcp_servers.htm&type=5).
 
@@ -67,13 +69,13 @@ Salesforce then validates the server with a ping and creates a **named credentia
 
 The callback URL is the one Salesforce shows for the external credential, for example `https://yourorg.my.salesforce.com/services/authcallback/Presay`. Only Salesforce domains are accepted. You can have up to five clients, and you can delete one at any time; connections that use it stop working within the hour.
 
-> **Check: untested with a real org.** Whether Salesforce sends PKCE (Presay requires it) and whether its callback URL passes our domain check are not yet confirmed. If your org rejects the connection, tell us what the error says.
+> **Check: untested with a real org.** We could not confirm from public documentation whether Salesforce sends PKCE (Presay requires it) or what callback URL it shows. The `services/authcallback` example above is the format used by Salesforce authentication providers, not a confirmed value for MCP servers. Presay accepts any HTTPS address on a Salesforce domain, so paste exactly what your org shows. If it rejects the connection, tell us what the error says.
 
 ### 2. Choose per-user sign-in
 
 Add a principal with the **per-user** identity type. Each Salesforce user then goes through Presay's sign-in once, and Salesforce keeps a separate token for each. That keeps the study allowance per person, and every person needs a Presay account.
 
-A shared service account (client credentials) is **not** available: Presay only supports the authorization-code flow with a signed-in person.
+A shared service account (client credentials) is **not** available: Presay only supports the authorization-code flow with a signed-in person. We chose that on purpose, because a service account would let everyone in your org act as one Presay user and spend that person's allowance.
 
 ### 3. Give people access
 
