@@ -72,7 +72,14 @@ Salesforce can register an external MCP server and expose its tools as actions f
 3. Presay's sign-in page opens. Sign in with your own Presay account and approve access. Each person signs in once; studies use their own [allowance](/account/limits.md).
 4. Ask the agent: "List my Presay audiences".
 
-Remove the connection in HubSpot, or under **Settings, AI agents, Connected assistants** in Presay, where it appears as "HubSpot".
+**What to expect on the sign-in page**
+
+- It opens in your browser's language (English, German, Spanish, French, Italian or Portuguese) and names the app asking, **HubSpot**, and what it can do: see your studies, reports and audiences, and run studies and save audiences. Each study counts toward your own weekly and daily [allowance](/account/limits.md).
+- **New to Presay?** Choose **Create a free account** on that page. It opens in a new tab, so the sign-in stays open. Confirm your email, then come back to the first tab and sign in. The sign-in page stays valid for 15 minutes. If it has expired, start **Connect and add** again in HubSpot.
+- **Forgot your password?** The link on the same page opens the reset page in a new tab.
+- After you sign in, Presay sends you straight back to HubSpot. You do not need to copy anything.
+
+**Staying connected.** The connection lasts a year and renews itself while the agent is in use. After that, HubSpot asks you to connect again. You can disconnect sooner in HubSpot, or under **Settings, AI agents, Connected assistants** in Presay, where it appears as "HubSpot".
 
 Sources: HubSpot, [Connect apps to HubSpot's AI agents](https://knowledge.hubspot.com/integrations/customize-breeze-agents-with-hubspot-mcp-client) and [Connect external MCP servers to HubSpot agents (BETA)](https://developers.hubspot.com/docs/apps/developer-platform/add-features/mcp-server).
 
