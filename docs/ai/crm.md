@@ -17,7 +17,7 @@ This page shows where a CRM asks for an MCP server and what to enter. For assist
 | **Transport** | Streamable HTTP |
 | **Sign-in** | OAuth 2.1 with PKCE (S256). Each person signs in with their own Presay email and password and approves access |
 | **Scopes** | `presay:read` (see studies, reports, audiences), `presay:write` (run studies, change things) |
-| **Client registration** | Dynamic Client Registration (`POST /oauth/register`) or a client ID metadata document (the `client_id` is an HTTPS URL). **Public clients only: there is no client secret** |
+| **Client registration** | For a CRM, create a client in **Settings, AI agents, Salesforce and HubSpot** (client ID and secret, shown once). Other assistants register themselves: Dynamic Client Registration or a client ID metadata document, as public clients with no secret |
 | **Discovery** | `https://mcp.presay.hyver.app/.well-known/oauth-authorization-server` |
 | **Allowance** | Studies started from a CRM use that person's own weekly and daily [allowance](/account/limits.md) |
 
@@ -59,11 +59,15 @@ Enter:
 | Server URL | `https://mcp.presay.hyver.app/mcp` |
 | Identity provider URL | `https://mcp.presay.hyver.app` |
 | Scopes (optional) | `presay:read presay:write`, or `presay:read` for read-only |
-| Client ID, client secret | See the check below |
+| Client ID, client secret | Create them in Presay first, see below |
 
 Salesforce then validates the server with a ping and creates a **named credential**, an **external credential** and a **permission set**.
 
-> **Check: client ID and secret.** Salesforce asks for both. Presay registers public clients that use PKCE and have no secret, and it does not issue a pre-registered client ID with a secret. Whether Salesforce accepts a connection without a secret, or can register itself through Dynamic Client Registration, is not confirmed. If the form requires a secret, it will not connect today.
+**Create the client ID and secret in Presay.** Open **Settings, AI agents, Salesforce and HubSpot** in the [web app](https://presay.hyver.app/), enter a name and your Salesforce **callback URL**, and choose **Create client**. Presay shows the client ID and secret once, with copy buttons and the other values to paste (server URL, identity provider URL, scopes). Copy the secret straight away: it cannot be shown again. If you lose it, delete the client and create a new one.
+
+The callback URL is the one Salesforce shows for the external credential, for example `https://yourorg.my.salesforce.com/services/authcallback/Presay`. Only Salesforce domains are accepted. You can have up to five clients, and you can delete one at any time; connections that use it stop working within the hour.
+
+> **Check: untested with a real org.** Whether Salesforce sends PKCE (Presay requires it) and whether its callback URL passes our domain check are not yet confirmed. If your org rejects the connection, tell us what the error says.
 
 ### 2. Choose per-user sign-in
 
@@ -104,9 +108,11 @@ Sources: HubSpot, [Connect apps to HubSpot's AI agents](https://knowledge.hubspo
 | Discovery at `/.well-known/oauth-authorization-server` on the server's domain | Yes |
 | Access token **and refresh token**, with the `refresh_token` grant | Yes (refresh tokens last 30 days and rotate) |
 | Dynamic Client Registration | HubSpot does **not** support it. You must supply a fixed client ID |
-| Fixed redirect URI `https://oauth-redirect.hubspot.com/callback/mcp_server` | **Check:** it must be accepted for the client ID you supply |
+| Fixed redirect URI `https://oauth-redirect.hubspot.com/callback/mcp_server` | Yes, when you create the client in Settings with this callback URL |
 
-> **Check: the client ID.** HubSpot sends the `mcpClientId` you configure as `client_id`. Presay can take an HTTPS **client ID metadata document** URL as a client ID, if that document lists HubSpot's redirect URI. That is the most likely fit, but we have not tried it, and HubSpot may not accept a URL as a client ID.
+**Create the client ID in Presay.** In **Settings, AI agents, Salesforce and HubSpot**, enter a name and the callback URL `https://oauth-redirect.hubspot.com/callback/mcp_server`, and choose **Create client**. Use the client ID as `mcpClientId`. A client whose callback is HubSpot's gets **no secret**: HubSpot signs in with PKCE only, so there is nothing else to copy.
+
+> **Check: untested with a real account.** HubSpot's beta may change what it sends. If your connection is refused, tell us what the error says.
 
 ### If you want to try it
 
@@ -123,7 +129,7 @@ You need a HubSpot developer account with access to the **MCP server public beta
     "name": "Presay",
     "description": "Run simulated audience studies and read reports",
     "mcpUrl": "https://mcp.presay.hyver.app/mcp",
-    "mcpClientId": "<client ID, see the check above>",
+    "mcpClientId": "<client ID from Settings, AI agents>",
     "requiredScopes": ["presay:read", "presay:write"],
     "enabled": true
   }
