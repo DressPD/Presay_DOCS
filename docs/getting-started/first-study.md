@@ -1,5 +1,7 @@
 # Your First Study
 
+In a hurry? The [Quick Start](/getting-started/quick-start.md) is the five-step version.
+
 A first study takes a few minutes to set up. This walkthrough tests a headline on a US general-population panel.
 
 ## 1. Start a new study
