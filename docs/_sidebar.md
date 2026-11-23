@@ -23,7 +23,8 @@
   - [Import from a File](audiences/import.md)
 - AI Assistants
   - [Connect an Assistant (MCP)](ai/mcp.md)
-  - [Integrations (Salesforce, HubSpot)](ai/crm.md)
+  - [Connect Presay in HubSpot](ai/hubspot.md)
+  - [Salesforce and other apps](ai/crm.md)
   - [Browser Extension](ai/extension.md)
 - Account
   - [Limits & Usage](account/limits.md)
