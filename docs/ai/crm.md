@@ -67,10 +67,15 @@ Salesforce can register an external MCP server and expose its tools as actions f
 
 > **Status: private beta.** Presay's HubSpot app is not on the HubSpot Marketplace yet, and has not been installed in a customer account. To try it, email [support@hyver.app](mailto:support@hyver.app) with your HubSpot account ID and we will send an install link. You need a HubSpot account that includes Agent Builder.
 
-1. Open the install link, choose your HubSpot account and approve the app.
-2. In **Agent Hub**, **Agent Builder**, open the agent, choose **Configure**, **Add tool**, the **MCP Servers** category, and **Connect and add** for **Presay**.
-3. Presay's sign-in page opens. Sign in with your own Presay account and approve access. Each person signs in once; studies use their own [allowance](/account/limits.md).
+1. **Install the app.** Open the install link, choose your HubSpot account and approve the app. HubSpot then sends you to Presay's **Settings, AI agents** page. That is expected: it only installs the app. **Nothing shows as connected yet**, because nobody has signed in to Presay.
+2. **Connect your Presay account.** In **Agent Hub**, **Agent Builder**, open the agent, choose **Configure**, **Add tool**, the **MCP Servers** category, and **Connect and add** for **Presay**.
+3. Presay's sign-in page opens. Type your Presay email and password and choose **Sign in and allow** (pressing Enter does the same). Each person signs in once; studies use their own [allowance](/account/limits.md).
 4. Ask the agent: "List my Presay audiences".
+
+**How you know it worked**
+
+- In **HubSpot**, the agent's tool list shows **Presay**. Under **Settings, Integrations, Connected Apps** you can see it and choose whether each tool is **Always allow**, **Ask permission** or **Never allow**.
+- In **Presay**, the **Settings, AI agents** page has a **HubSpot** tab with these same steps. While it is open it shows **Connected: HubSpot** as soon as you sign in. **Connected assistants** lists **HubSpot** with a **Read and write** badge, the date you connected and the date access ends. If the list has no HubSpot row, the sign-in was not completed: nobody is connected, whatever HubSpot's install page said.
 
 **What to expect on the sign-in page**
 
@@ -83,7 +88,16 @@ Salesforce can register an external MCP server and expose its tools as actions f
 
 Sources: HubSpot, [Connect apps to HubSpot's AI agents](https://knowledge.hubspot.com/integrations/customize-breeze-agents-with-hubspot-mcp-client) and [Connect external MCP servers to HubSpot agents (BETA)](https://developers.hubspot.com/docs/apps/developer-platform/add-features/mcp-server).
 
-**Check.** HubSpot's feature is in beta and may change. If the connection is refused, tell us what the error says.
+**Troubleshooting**
+
+| HubSpot says | What it means | What to do |
+| --- | --- | --- |
+| "Could not connect account because user denied access. The user declined" | The sign-in page was cancelled, so Presay gave HubSpot no access. Until 23 November 2026 this also happened by mistake when you pressed Enter after typing your password, because Enter chose Cancel. That is fixed | Choose **Connect and add** again and choose **Sign in and allow** |
+| The sign-in page says the email and password do not match | A typo or the wrong account. Your email stays filled in so you only retype the password | Retry, or use **Forgot your password?** |
+| "This sign-in page expired" | The page was open for more than 15 minutes | Choose **Connect and add** again |
+| Nothing under Connected assistants in Presay | The sign-in was not completed | Complete step 2 and 3 above |
+
+**Check.** HubSpot's feature is in beta and may change. If the connection is refused for another reason, tell us what the error says.
 
 ### For developers
 
