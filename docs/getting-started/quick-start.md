@@ -19,7 +19,7 @@ Five steps from nothing to a first read. Each step links to the page with the de
 | Test a specific group of people | [Audience Library](/audiences/library.md), [Import from a File](/audiences/import.md) |
 | Send the result to someone | [Share & Export](/reports/share-export.md) |
 | Run studies by asking an assistant | [Connect an Assistant (MCP)](/ai/mcp.md) |
-| Use Presay inside your CRM | [Salesforce and HubSpot](/ai/crm.md) |
+| Use Presay inside Salesforce, HubSpot or another app | [Integrations](/ai/crm.md) |
 | Test the page you are looking at | [Browser Extension](/ai/extension.md) |
 
 ## Before you rely on a number
