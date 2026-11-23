@@ -6,7 +6,7 @@ Presay's MCP server is at:
 https://mcp.presay.hyver.app/mcp
 ```
 
-This page shows how to connect Presay to an app that asks for a client ID and secret, such as Salesforce or HubSpot. For assistants such as Claude, ChatGPT, Cursor or VS Code, which register themselves, use [Connect an Assistant (MCP)](/ai/mcp.md) instead.
+This page shows how to connect Presay to an app that asks for a client ID and secret, such as Salesforce. HubSpot works differently: you install Presay's HubSpot app (see below). For assistants such as Claude, ChatGPT, Cursor or VS Code, which register themselves, use [Connect an Assistant (MCP)](/ai/mcp.md) instead.
 
 > **Status.** Presay's side is live and was checked end to end on production: creating integrations, sign-in with and without PKCE, secrets, refresh, a service account, and revoking. We have **not** yet completed a connection from a real Salesforce org or HubSpot account. The points where those products may differ are marked **Check**. Menu names change between releases, so trust what your org shows over this page.
 
@@ -15,7 +15,7 @@ This page shows how to connect Presay to an app that asks for a client ID and se
 An integration is the client ID (and, for most apps, secret) that the other app uses to sign people in to Presay. You create it yourself, in the web app.
 
 1. Open **Settings, AI agents** and scroll to **Integrations**.
-2. Choose the app: **Salesforce**, **HubSpot** or **Other app**. The panel shows the connection steps for that app.
+2. Choose the app: **Salesforce** or **Other app**. The panel shows the connection steps for that app.
 3. Enter a name. Enter the **callback URL** if you have it. You can leave it empty and add it later with **Callback URLs**, because Salesforce shows its callback only after you save the credential there.
 4. Choose **Create integration**. Presay shows the **client ID**, the **client secret** (once), and the **server URL**, **identity provider URL** and **scopes** to paste into the other app.
 
@@ -26,7 +26,7 @@ An integration is the client ID (and, for most apps, secret) that the other app 
 | Kind | Secret | Who signs in | Use it for |
 | --- | --- | --- | --- |
 | **Per person** (default) | Yes | Every person, with their own Presay account | Salesforce, and other apps that send people to a sign-in page |
-| **No secret** (HubSpot preset, or untick "This app can keep a secret") | No, PKCE only | Every person | Apps that cannot keep a secret, such as HubSpot's MCP component |
+| **No secret** (untick "This app can keep a secret") | No, PKCE only | Every person | Apps that cannot keep a secret |
 | **Service account** | Yes | Nobody: the app acts as **you** | Apps that cannot send people to a sign-in page |
 
 ## Many people in one organisation
@@ -63,43 +63,31 @@ Salesforce can register an external MCP server and expose its tools as actions f
 
 ## HubSpot
 
-**HubSpot does not currently let a customer paste an MCP server URL.** Its Agent Builder connector list is fixed (for example Notion, Atlassian, Gong, Zapier). The documented route is for a developer to package a server as an **MCP server component** inside a HubSpot app (**beta**, private or marketplace distribution). Customers then install the app and the server shows up under **Add tool** in Agent Builder. Sources: HubSpot, [Connect apps to HubSpot's AI agents](https://knowledge.hubspot.com/integrations/customize-breeze-agents-with-hubspot-mcp-client) and [Connect external MCP servers to HubSpot agents (BETA)](https://developers.hubspot.com/docs/apps/developer-platform/add-features/mcp-server).
+**HubSpot does not let a customer paste an MCP server URL.** Its Agent Builder connector list is fixed (for example Notion, Atlassian, Gong, Zapier). A server reaches HubSpot's agents through an **app** that its owner builds once with HubSpot's developer platform (an "MCP server component", currently in public beta). Presay owns that app. You install it and sign in with your Presay account. **You do not create a client ID or secret**, and there is nothing to set up in Presay's Settings.
 
-| HubSpot requires | Presay |
-| --- | --- |
-| Public HTTPS URL | Yes |
-| OAuth 2.1 authorization code with PKCE (S256) | Yes |
-| Discovery at `/.well-known/oauth-authorization-server` on the server's domain | Yes |
-| Access token **and refresh token** | Yes (refresh tokens last 30 days and rotate) |
-| A fixed client ID, no dynamic registration | Yes: create it in Settings |
-| Fixed callback `https://oauth-redirect.hubspot.com/callback/mcp_server` | Filled in by the **HubSpot** preset |
+> **Status: private beta.** Presay's HubSpot app is not on the HubSpot Marketplace yet, and has not been installed in a customer account. To try it, email [support@hyver.app](mailto:support@hyver.app) with your HubSpot account ID and we will send an install link. You need a HubSpot account that includes Agent Builder.
 
-To try it you need a HubSpot developer account with access to the **MCP server public beta** and the HubSpot CLI.
+1. Open the install link, choose your HubSpot account and approve the app.
+2. In **Agent Hub**, **Agent Builder**, open the agent, choose **Configure**, **Add tool**, the **MCP Servers** category, and **Connect and add** for **Presay**.
+3. Presay's sign-in page opens. Sign in with your own Presay account and approve access. Each person signs in once; studies use their own [allowance](/account/limits.md).
+4. Ask the agent: "List my Presay audiences".
 
-1. In Presay, choose the **HubSpot** preset and **Create integration**. It has **no secret**: HubSpot signs in with PKCE only. Copy the client ID.
-2. In your HubSpot project, create an app set to **private** distribution with at least the `oauth` scope. The platform version in `hsproject.json` must be the beta one HubSpot names on its page.
-3. Add `app/mcp-server/presay-hsmeta.json`:
+**What to expect on the sign-in page**
 
-```json
-{
-  "uid": "presay_mcp",
-  "type": "mcp-server",
-  "config": {
-    "name": "Presay",
-    "description": "Run simulated audience studies and read reports",
-    "mcpUrl": "https://mcp.presay.hyver.app/mcp",
-    "mcpClientId": "<client ID from Settings, AI agents, Integrations>",
-    "requiredScopes": ["presay:read", "presay:write"],
-    "enabled": true
-  }
-}
-```
+- It opens in your browser's language (English, German, Spanish, French, Italian or Portuguese) and names the app asking, **HubSpot**, and what it can do: see your studies, reports and audiences, and run studies and save audiences. Each study counts toward your own weekly and daily [allowance](/account/limits.md).
+- **New to Presay?** Choose **Create a free account** on that page. It opens in a new tab, so the sign-in stays open. Confirm your email, then come back to the first tab and sign in. The sign-in page stays valid for 15 minutes. If it has expired, start **Connect and add** again in HubSpot.
+- **Forgot your password?** The link on the same page opens the reset page in a new tab.
+- After you sign in, Presay sends you straight back to HubSpot. You do not need to copy anything.
 
-4. Deploy the project, copy the install link from the app's **Distribution** tab and install it in a HubSpot account.
-5. In the account, open the project's MCP server component and choose **Test connection**, then **Connect**. Presay's sign-in page opens.
-6. In **Agent Hub**, **Agent Builder**, choose **Configure**, **Add tool**, the **MCP Servers** category, and **Connect and add** for Presay.
+**Staying connected.** The connection lasts a year and renews itself while the agent is in use. After that, HubSpot asks you to connect again. You can disconnect sooner in HubSpot, or under **Settings, AI agents, Connected assistants** in Presay, where it appears as "HubSpot".
 
-Field names come from HubSpot's beta page and may change. **Check** that page before you start, and tell us if HubSpot refuses the connection.
+Sources: HubSpot, [Connect apps to HubSpot's AI agents](https://knowledge.hubspot.com/integrations/customize-breeze-agents-with-hubspot-mcp-client) and [Connect external MCP servers to HubSpot agents (BETA)](https://developers.hubspot.com/docs/apps/developer-platform/add-features/mcp-server).
+
+**Check.** HubSpot's feature is in beta and may change. If the connection is refused, tell us what the error says.
+
+### For developers
+
+HubSpot sends a fixed client ID, uses PKCE (S256) and does not register clients dynamically. It needs an access token and a refresh token, discovery at `/.well-known/oauth-authorization-server` on the server's domain, and the callback `https://oauth-redirect.hubspot.com/callback/mcp_server`. Presay meets all of these, with a Presay-owned public client for the app, which is why the app is the supported route.
 
 ## Other apps
 
@@ -112,7 +100,7 @@ For any app that asks for an OAuth client for an MCP server: choose **Other app*
 | | Supported by the app | Presay |
 | --- | --- | --- |
 | **Salesforce** | OAuth 2.0 or none. Per-user authorization code is disputed; client credentials is reported | Both: per person, or a service account |
-| **HubSpot** | OAuth 2.1 with PKCE only, for a custom MCP server component | Yes, as an integration with no secret |
+| **HubSpot** | OAuth 2.1 with PKCE only, for a custom MCP server component | Yes: Presay's own HubSpot app, with a Presay-owned client |
 
 ## Safety and control
 
