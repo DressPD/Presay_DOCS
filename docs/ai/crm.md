@@ -1,4 +1,4 @@
-# Integrations: Salesforce, HubSpot and other apps
+# Integrations: Salesforce and other apps
 
 Presay's MCP server is at:
 
@@ -6,128 +6,92 @@ Presay's MCP server is at:
 https://mcp.presay.hyver.app/mcp
 ```
 
-This page shows how to connect Presay to an app that asks for a client ID and secret, such as Salesforce. HubSpot works differently: you install Presay's HubSpot app (see below). For assistants such as Claude, ChatGPT, Cursor or VS Code, which register themselves, use [Connect an Assistant (MCP)](/ai/mcp.md) instead.
+This page is for apps that ask for a **client ID and secret** before they will connect to an MCP server, such as Salesforce. **HubSpot works differently and is much simpler:** see [Connect Presay in HubSpot](/ai/hubspot.md). For assistants such as Claude, ChatGPT, Cursor or VS Code, which register themselves, see [Connect an Assistant (MCP)](/ai/mcp.md).
 
-> **Status.** Presay's side is live and was checked end to end on production: creating integrations, sign-in with and without PKCE, secrets, refresh, a service account, and revoking. We have **not** yet completed a connection from a real Salesforce org or HubSpot account. The points where those products may differ are marked **Check**. Menu names change between releases, so trust what your org shows over this page.
+> **Status: Salesforce is not supported yet.** Presay's side is built and was tested end to end on production, but we have **not** connected a real Salesforce org, and Salesforce's rules raise open questions about our tools (see [Known risks](#known-risks-with-salesforce)). Use this page to evaluate it, not as a finished setup guide. If you need Salesforce, email [support@hyver.app](mailto:support@hyver.app).
 
-## 1. Create the integration in Presay
+## What Salesforce requires
 
-An integration is the client ID (and, for most apps, secret) that the other app uses to sign people in to Presay. You create it yourself, in the web app.
+From Salesforce Help ("MCP for Agentforce", checked 24 November 2026):
 
-1. Open **Settings, AI agents** and scroll to **Integrations**.
-2. Choose the app: **Salesforce** or **Other app**. The panel shows the connection steps for that app.
-3. Enter a name. Enter the **callback URL** if you have it. You can leave it empty and add it later with **Callback URLs**, because Salesforce shows its callback only after you save the credential there.
-4. Choose **Create integration**. Presay shows the **client ID**, the **client secret** (once), and the **server URL**, **identity provider URL** and **scopes** to paste into the other app.
+- The server must use the **Streamable HTTP** transport. Presay does.
+- If the server uses authentication, it must be **OAuth 2.0 client credentials**. Salesforce also supports a **per-user** option through a Salesforce *external credential* (browser flow). Basic, JWT and API-key styles are planned, "but aren't yet available".
+- You need **Enterprise, Performance, Unlimited or Developer Edition**, Einstein generative AI set up, and an **Agentforce Service or Agentforce Employee** agent built in the new Agentforce Builder (the legacy builder is not supported).
+- Only an MCP server's **tools** are used, not its prompts or resources. Each MCP tool action is billed like any other agent action.
 
-**Copy the secret straight away.** It is shown only once and cannot be recovered. If you lose it, delete the integration and create a new one. Each person can have up to five integrations.
+## Two ways to connect
 
-### Three kinds of integration
+| | **A. OAuth 2.0 (client credentials)** | **B. Per-user external credential** |
+| --- | --- | --- |
+| Who Presay sees | One Presay account: **the person who created the integration**. Everyone using the agent acts as them and spends their allowance | Each Salesforce user signs in with their **own** Presay account |
+| Agents | Agentforce Service and Employee | **Agentforce Employee only** |
+| Setup | Short: one form in Salesforce | Long: an external auth identity provider and credential in Salesforce, and each user allows access |
+| Fits many users in one org | Only as a shared service account | Yes |
 
-| Kind | Secret | Who signs in | Use it for |
-| --- | --- | --- | --- |
-| **Per person** (default) | Yes | Every person, with their own Presay account | Salesforce, and other apps that send people to a sign-in page |
-| **No secret** (untick "This app can keep a secret") | No, PKCE only | Every person | Apps that cannot keep a secret |
-| **Service account** | Yes | Nobody: the app acts as **you** | Apps that cannot send people to a sign-in page |
+## A. OAuth 2.0 (client credentials)
 
-## Many people in one organisation
-
-One integration is enough for a whole organisation. Each person signs in **once**, with their **own** Presay account, when the app first asks. Studies they start use **their** weekly and daily [allowance](/account/limits.md), and each person needs their own [Presay account](/getting-started/account.md). They can remove their connection any time under **Settings, AI agents, Connected assistants**.
-
-A **service account** works differently, on purpose. Everyone using it acts as the person who created it and spends that person's allowance. Use it only when the app offers nothing else. Presay limits it to **read only** unless you choose read and write, issues short-lived tokens (one hour, no refresh token), and lists it under **Connected assistants** as "(service account)", where **Disconnect** ends it at once. Deleting the integration ends it too.
-
-## Salesforce (Agentforce)
-
-Salesforce can register an external MCP server and expose its tools as actions for an Agentforce agent. Sources: Salesforce Help, [Register a Third-Party MCP Server in Agentforce Registry](https://help.salesforce.com/s/articleView?language=en_US&id=ai.agent_mcp_connect_register.htm&type=5) and [Register External MCP Servers in API Catalog](https://help.salesforce.com/s/articleView?language=en_US&id=platform.api_catalog_manage_manual_external_mcp_servers.htm&type=5).
-
-> **Which sign-in does Salesforce offer?** Public sources disagree. A September 2026 write-up says Agentforce supports only **no authentication or OAuth 2.0 client credentials**. Salesforce's own blog describes a **per-user** option. The form asks only for an identity provider URL, client ID, client secret and scopes, which fits client credentials. Presay supports both, so create the kind that matches what your org shows (below).
-
-1. **Create the integration** as above, choosing **Salesforce**.
-   - If your org offers a **per-user (authorization code) sign-in**, create it as usual. If it only offers **client credentials**, tick **Service account** and choose the access level.
-2. In **Setup**, search for **Agentforce Registry** and add an MCP server. Or open **API Catalog**, **MCP Servers**, **External Servers**, **Add MCP Server**, **Register External MCP Server**. Use the path your org shows.
-3. Enter:
+1. In Presay, open **Settings, AI agents, Integrations**, choose **Salesforce**, tick **Service account** and choose **Read only** (or read and write), then **Create integration**. Copy the client ID and secret now: the secret is shown once.
+2. In Salesforce **Setup**, search for **Agentforce Registry**, choose **New**, and register a server from scratch.
+3. Enter these values:
 
    | Field | Value |
    | --- | --- |
-   | Name | `Presay` |
-   | Server URL | `https://mcp.presay.hyver.app/mcp` |
-   | Identity provider URL | `https://mcp.presay.hyver.app` |
-   | Scopes (optional) | `presay:read presay:write`, or `presay:read` for read-only |
-   | Client ID, client secret | From the integration you created |
+   | Server name, description | `Presay`, and a one-line description |
+   | URL | `https://mcp.presay.hyver.app/mcp` |
+   | Authentication method | **OAuth 2.0** |
+   | Identity Provider URL | `https://mcp.presay.hyver.app/oauth/token` (Presay's **token** endpoint; Salesforce's own example uses a token URL here) |
+   | Scope | `presay:read` (or `presay:read,presay:write`), comma-separated as Salesforce asks |
+   | Client ID, client secret | From step 1 |
 
-4. **Per-user sign-in only:** Salesforce shows a **callback URL** after you save. Copy it and add it in Presay under **Callback URLs**. Presay accepts any plain `https` address. The `.../services/authcallback/...` form is what Salesforce uses for authentication providers, so paste exactly what your org shows.
-5. Assign the **permission set** Salesforce created to the people, and to the agent's user, who will use Presay. By default only the person who created the connection has it.
-6. In **Agentforce Builder**, open the agent, pick a topic, choose **This Topic's Actions**, **New**, **Add from Asset Library**, and select the Presay tools. Start with the read tools (`list_audiences`, `get_study`, `get_report`, `get_usage`), then add `create_study` and the others. See the [tool list](/ai/mcp.md#what-the-assistant-can-do).
-7. Test by asking the agent: "List my Presay audiences". With a per-user sign-in, Salesforce asks each person to sign in to Presay the first time.
+   The Presay panel shows `https://mcp.presay.hyver.app` as the identity provider URL. For Salesforce, use the token URL above.
+4. Choose **Create and Continue**. Salesforce pings the server, then lists its tools. **Allowlist only the tools you want.**
+5. In **Agentforce Builder**, open the agent, pick a topic, **This Topic's Actions**, **Add from Asset Library**, and add the Presay tools. Start with the read-only ones.
+6. Ask the agent: "List my Presay audiences."
 
-**Check.** Salesforce may not send PKCE. Presay allows that for integrations that have a secret, because the secret protects the exchange. We could not confirm from public documentation which callback URL Salesforce shows for MCP servers, or whether your org offers the per-user option. If your org rejects the connection, tell us what the error says.
+Treat the secret like a password. Disconnect or delete the integration in Presay at any time: access ends at once.
 
-## HubSpot
+## B. Per-user external credential
 
-**HubSpot does not let a customer paste an MCP server URL.** Its Agent Builder connector list is fixed (for example Notion, Atlassian, Gong, Zapier). A server reaches HubSpot's agents through an **app** that its owner builds once with HubSpot's developer platform (an "MCP server component", currently in public beta). Presay owns that app. You install it and sign in with your Presay account. **You do not create a client ID or secret**, and there is nothing to set up in Presay's Settings.
+Salesforce documents this as: create an external credential (OAuth, browser flow), register the server with **Use External Credential**, then each user opens **My Personal Information, External Credentials** and chooses **Allow Access**. For Presay, the pieces are:
 
-> **Status: private beta.** Presay's HubSpot app is not on the HubSpot Marketplace yet, and has not been installed in a customer account. To try it, email [support@hyver.app](mailto:support@hyver.app) with your HubSpot account ID and we will send an install link. You need a HubSpot account that includes Agent Builder.
+| Salesforce asks for | Presay value |
+| --- | --- |
+| Authorization URL | `https://mcp.presay.hyver.app/oauth/authorize` |
+| Token URL | `https://mcp.presay.hyver.app/oauth/token` |
+| Client ID and secret | From **Settings, AI agents, Integrations** (Salesforce, without Service account) |
+| Scopes | `presay:read presay:write` |
+| PKCE | Presay accepts it and also works without it for an integration that has a secret |
 
-1. **Install the app.** Open the install link, choose your HubSpot account and approve the app. HubSpot then sends you to Presay's **Settings, AI agents** page. That is expected: it only installs the app. **Nothing shows as connected yet**, because nobody has signed in to Presay.
-2. **Connect your Presay account.** In **Agent Hub**, **Agent Builder**, open the agent, choose **Configure**, **Add tool**, the **MCP Servers** category, and **Connect and add** for **Presay**.
-3. Presay's sign-in page opens. Type your Presay email and password and choose **Sign in and allow** (pressing Enter does the same). Each person signs in once; studies use their own [allowance](/account/limits.md).
-4. Ask the agent: "List my Presay audiences".
+Salesforce then shows a **callback URL** for the identity provider. Add it in Presay under **Callback URLs** for that integration. We have not run this flow in a real org, so some labels and the callback URL format may differ.
 
-**How you know it worked**
+## Known risks with Salesforce
 
-- In **HubSpot**, the agent's tool list shows **Presay**. Under **Settings, Integrations, Connected Apps** you can see it and choose whether each tool is **Always allow**, **Ask permission** or **Never allow**.
-- In **Presay**, the **Settings, AI agents** page has a **HubSpot** tab with these same steps. While it is open it shows **Connected: HubSpot** as soon as you sign in. **Connected assistants** lists **HubSpot** with a **Read and write** badge, the date you connected and the date access ends. If the list has no HubSpot row, the sign-in was not completed: nobody is connected, whatever HubSpot's install page said.
+We checked Presay's tools against Salesforce's published limits. These are **unverified** until a real org confirms them:
 
-**What to expect on the sign-in page**
-
-- It opens in your browser's language (English, German, Spanish, French, Italian or Portuguese) and names the app asking, **HubSpot**, and what it can do: see your studies, reports and audiences, and run studies and save audiences. Each study counts toward your own weekly and daily [allowance](/account/limits.md).
-- **New to Presay?** Choose **Create a free account** on that page. It opens in a new tab, so the sign-in stays open. Confirm your email, then come back to the first tab and sign in. The sign-in page stays valid for 15 minutes. If it has expired, start **Connect and add** again in HubSpot.
-- **Forgot your password?** The link on the same page opens the reset page in a new tab.
-- After you sign in, Presay sends you straight back to HubSpot. You do not need to copy anything.
-
-**Staying connected.** The connection lasts a year and renews itself while the agent is in use. After that, HubSpot asks you to connect again. You can disconnect sooner in HubSpot, or under **Settings, AI agents, Connected assistants** in Presay, where it appears as "HubSpot".
-
-Sources: HubSpot, [Connect apps to HubSpot's AI agents](https://knowledge.hubspot.com/integrations/customize-breeze-agents-with-hubspot-mcp-client) and [Connect external MCP servers to HubSpot agents (BETA)](https://developers.hubspot.com/docs/apps/developer-platform/add-features/mcp-server).
-
-**Troubleshooting**
-
-| HubSpot says | What it means | What to do |
-| --- | --- | --- |
-| "Could not connect account because user denied access. The user declined" | The sign-in page was cancelled, so Presay gave HubSpot no access. Until 23 November 2026 this also happened by mistake when you pressed Enter after typing your password, because Enter chose Cancel. That is fixed | Choose **Connect and add** again and choose **Sign in and allow** |
-| The sign-in page says the email and password do not match | A typo or the wrong account. Your email stays filled in so you only retype the password | Retry, or use **Forgot your password?** |
-| "This sign-in page expired" | The page was open for more than 15 minutes | Choose **Connect and add** again |
-| Nothing under Connected assistants in Presay | The sign-in was not completed | Complete step 2 and 3 above |
-
-**Check.** HubSpot's feature is in beta and may change. If the connection is refused for another reason, tell us what the error says.
-
-### For developers
-
-HubSpot sends a fixed client ID, uses PKCE (S256) and does not register clients dynamically. It needs an access token and a refresh token, discovery at `/.well-known/oauth-authorization-server` on the server's domain, and the callback `https://oauth-redirect.hubspot.com/callback/mcp_server`. Presay meets all of these, with a Presay-owned public client for the app, which is why the app is the supported route.
-
-## Other apps
-
-For any app that asks for an OAuth client for an MCP server: choose **Other app**, create the integration, and give the app the client ID, the secret if shown, the **server URL** and the **identity provider URL**. Add the callback URL the app shows under **Callback URLs**. Presay supports the authorization-code flow with PKCE (or a secret), refresh tokens, and the client-credentials flow for a service account.
+- **Tool names.** Salesforce documents tool names as up to 128 characters from letters, digits, `.`, `/` and `-`. Presay's 21 tools use underscores (`create_study`, `get_report`). If Salesforce enforces that list, no Presay tool can be used until we offer Salesforce-compatible names.
+- **Long descriptions.** Salesforce says properties must be 255 characters or less. Four of our tool descriptions are longer (about 400 to 630 characters).
+- **Nested results.** Agentforce Builder handles flat results best. Presay reports are nested, so the agent can use them but may not store them in variables.
+- **Timeouts.** Salesforce stops waiting after 60 seconds. Presay starts a study and returns at once, so this should be fine.
 
 ## OAuth or API key?
 
-**OAuth.** Presay has no API key or personal access token, on purpose: every connection is a person (or a revocable service account you created) approved in your account. Neither CRM documents an API-key option for a custom MCP server.
+**OAuth.** Presay has no API key or personal access token, on purpose. Salesforce does not offer API-key authentication for MCP servers yet. A service account (option A) is the closest thing: a revocable credential you create, limited to the access you choose, with one-hour tokens and no refresh token. It shows under **Connected assistants** as "(service account)", where **Disconnect** ends it.
 
-| | Supported by the app | Presay |
-| --- | --- | --- |
-| **Salesforce** | OAuth 2.0 or none. Per-user authorization code is disputed; client credentials is reported | Both: per person, or a service account |
-| **HubSpot** | OAuth 2.1 with PKCE only, for a custom MCP server component | Yes: Presay's own HubSpot app, with a Presay-owned client |
+## Other apps
+
+For any other app that asks for an OAuth client for an MCP server: choose **Other app**, create the integration, and give the app the client ID, the secret if shown, the server URL, and the **token** and **authorization** URLs above. Add the callback URL the app shows under **Callback URLs**. Presay supports the authorization-code flow with PKCE (or a secret), refresh tokens, and client credentials for a service account.
 
 ## Safety and control
 
 - Only you can create, edit or delete integrations, in the web app. An assistant connected through MCP cannot.
 - Secrets are stored only as a hash. Deleting an integration stops its connections from refreshing at once; tokens already issued last up to an hour, except a service account's, which stop immediately.
-- Callback URLs must be plain `https` addresses. The sign-in page shows people which app is asking and where it will send them. Only approve apps you recognise.
-- A person can remove any connection under **Settings, AI agents, Connected assistants**.
+- Callback URLs must be plain `https` addresses. The sign-in page shows people which app is asking and where it will send them.
 
-## Until it works in your app
+## Until Salesforce works
 
-If an app can't connect yet, the study loop still fits your CRM workflow:
+The study loop still fits a Salesforce workflow:
 
-- Run the study in the [web app](/getting-started/first-study.md) or through an [assistant](/ai/mcp.md), then paste the [shared report link](/reports/share-export.md) into the Salesforce record or HubSpot note.
+- Run the study in the [web app](/getting-started/first-study.md) or through an [assistant](/ai/mcp.md), then paste the [shared report link](/reports/share-export.md) into the Salesforce record.
 - Export the report as PDF, Word or JSON and attach it. See [Share & Export](/reports/share-export.md).
 
-> The respondents are simulated. Whatever an agent in your CRM reports back is a directional signal, not measured demand. See [Limits of Synthetic Research](/limits.md).
+> The respondents are simulated. Whatever an agent reports back is a directional signal, not measured demand. See [Limits of Synthetic Research](/limits.md).
