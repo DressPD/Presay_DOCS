@@ -1,5 +1,6 @@
 - [Home](/)
 - Getting Started
+  - [Quick Start](getting-started/quick-start.md)
   - [What is Presay?](getting-started/overview.md)
   - [Ways to Use Presay](getting-started/ways-to-use.md)
   - [Create an Account](getting-started/account.md)
@@ -22,6 +23,7 @@
   - [Import from a File](audiences/import.md)
 - AI Assistants
   - [Connect an Assistant (MCP)](ai/mcp.md)
+  - [Salesforce and HubSpot](ai/crm.md)
   - [Browser Extension](ai/extension.md)
 - Account
   - [Limits & Usage](account/limits.md)
