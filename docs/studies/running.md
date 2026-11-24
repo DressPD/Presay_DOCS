@@ -2,7 +2,7 @@
 
 ## Running a study
 
-Choose **Run study** on **New study**. A small study usually finishes in under a minute; larger ones show an estimate such as "About 4 min". The study keeps running if you close the page, and a progress bar shows where it is.
+Choose **Run study** on **New study**. A study of 20 to 30 personas usually takes about a minute. Larger ones show an estimate on the form, such as "About 4 min". The study keeps running if you close the page, and a progress bar shows where it is.
 
 Each run uses one study from your weekly and daily [allowance](/account/limits.md). The form shows how many you have left, and blocks the run with an explanation if you are at the limit.
 

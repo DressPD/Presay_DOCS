@@ -37,6 +37,6 @@ The retest report is a normal [A/B report](/studies/types.md). Look at the paire
 
 ## Limits
 
-- Drafts have their own daily cap, separate from your study allowance. See [Limits & Usage](/account/limits.md).
+- Drafts have their own daily cap, separate from your study allowance. See [Study Allowance](/account/limits.md).
 - One draft can be in progress per study at a time.
 - Drafts only work on reports that have reviewed recommendations to apply.

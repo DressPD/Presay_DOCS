@@ -28,4 +28,6 @@ Presay is not a general-purpose survey tool and it does not replace research wit
 
 ## Next
 
-[Create an account](/getting-started/account.md), then [run your first study](/getting-started/first-study.md).
+1. [Create an account](/getting-started/account.md).
+2. [Run your first study](/getting-started/first-study.md), or follow the five-step [Quick Start](/getting-started/quick-start.md).
+3. Before you rely on a result, read [Plan a Good Study](/studies/plan.md) and [From Report to Decision](/reports/playbook.md).

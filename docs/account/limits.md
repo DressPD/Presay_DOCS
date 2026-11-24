@@ -1,4 +1,4 @@
-# Limits & Usage
+# Study Allowance
 
 Presay limits how many studies each account can run, so a single account cannot exhaust shared capacity.
 

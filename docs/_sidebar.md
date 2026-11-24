@@ -6,6 +6,7 @@
   - [Create an Account](getting-started/account.md)
   - [Your First Study](getting-started/first-study.md)
 - Studies
+  - [Plan a Good Study](studies/plan.md)
   - [Study Types](studies/types.md)
   - [Choosing a Target](studies/targets.md)
   - [Audience & Sample Size](studies/audience.md)
@@ -15,6 +16,7 @@
   - [Metrics](reports/metrics.md)
   - [Segments & Reactions](reports/segments.md)
   - [Accept or Revise](reports/decision.md)
+  - [From Report to Decision](reports/playbook.md)
   - [Share & Export](reports/share-export.md)
 - Drafts
   - [Improve & Retest](drafts/retest.md)
@@ -27,8 +29,10 @@
   - [Salesforce](ai/salesforce.md)
   - [Browser Extension](ai/extension.md)
 - Account
-  - [Limits & Usage](account/limits.md)
+  - [Study Allowance](account/limits.md)
   - [Settings & Privacy](account/settings.md)
-- Trust
-  - [Limits of Synthetic Research](limits.md)
+- Help
+  - [Troubleshooting](troubleshooting.md)
   - [FAQ](faq.md)
+  - [Glossary](glossary.md)
+  - [Limits of Synthetic Research](limits.md)
