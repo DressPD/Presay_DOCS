@@ -36,6 +36,10 @@ Studies are simulations, so some run-to-run variation is expected. To compare ve
 
 A 0 to 100 summary of how favourably the simulated panel reacted across all four metrics. Use it to compare variants, not as an absolute score or a forecast.
 
+## How much does Presay cost?
+
+Presay is **free to use** within the study allowance: currently 30 studies a week and 10 a day per account (see [Limits & Usage](/account/limits.md)). There are no paid plans, and we will tell you before any charge is introduced. The same applies when you use Presay from an assistant such as HubSpot or Claude. See the [Terms of Service](https://presay.hyver.app/terms-of-service.html).
+
 ## Is my content private?
 
 Your content is sent to AI models to run the study, and is visible to you and anyone you share a report with. See [Settings & Privacy](/account/settings.md).

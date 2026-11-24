@@ -10,7 +10,7 @@ Presay limits how many studies each account can run, so a single account cannot 
 | Per day | 10 studies |
 | Drafts per day | 20 |
 
-These are the current production limits and may change during the preview.
+Presay is free within these limits (see the [FAQ](/faq.md)). They are the current production limits and may change during the preview.
 
 - The allowance is **rolling**. Capacity frees up as your oldest study passes 7 days old (weekly) or 24 hours old (daily).
 - It counts studies started from the website, the [browser extension](/ai/extension.md) and [AI assistants](/ai/mcp.md) together.
