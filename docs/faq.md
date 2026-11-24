@@ -38,15 +38,35 @@ A 0 to 100 summary of how favourably the simulated panel reacted across all four
 
 ## How much does Presay cost?
 
-Presay is **free to use** within the study allowance: currently 30 studies a week and 10 a day per account (see [Limits & Usage](/account/limits.md)). There are no paid plans, and we will tell you before any charge is introduced. The same applies when you use Presay from an assistant such as HubSpot or Claude. See the [Terms of Service](https://presay.hyver.app/terms-of-service.html).
+Presay is **free to use** within the study allowance: currently 30 studies a week and 10 a day per account (see [Study Allowance](/account/limits.md)). There are no paid plans, and we will tell you before any charge is introduced. The same applies when you use Presay from an assistant such as HubSpot or Claude. See the [Terms of Service](https://presay.hyver.app/terms-of-service.html).
 
 ## Is my content private?
 
 Your content is sent to AI models to run the study, and is visible to you and anyone you share a report with. See [Settings & Privacy](/account/settings.md).
 
+## How long are my studies kept?
+
+Studies, reactions and reports are deleted automatically 365 days after creation, and uploaded target images after 90 days. You can delete a study yourself at any time. See [Settings & Privacy](/account/settings.md).
+
+## How long does a study take?
+
+About a minute for 20 to 30 personas. Larger samples take longer and the form shows an estimate before you run. The study keeps running if you leave the page. See [Running & Managing Studies](/studies/running.md).
+
+## Which study type should I choose?
+
+Use a **messaging test** for one headline or piece of copy, a **concept test** for an idea, and an **A/B test** to compare two versions. See [Plan a Good Study](/studies/plan.md).
+
+## What do I do with a Revise call?
+
+Work through the High and Medium recommendations, then use **Improve & Retest** to score a draft against the original. See [From Report to Decision](/reports/playbook.md).
+
+## A word in the docs or report is unfamiliar
+
+See the [Glossary](/glossary.md). For a problem you cannot solve, see [Troubleshooting](/troubleshooting.md).
+
 ## I reached my study limit
 
-See [Limits & Usage](/account/limits.md). Capacity frees up as your oldest studies leave the rolling window.
+See [Study Allowance](/account/limits.md). Capacity frees up as your oldest studies leave the rolling window.
 
 ## Who do I contact?
 

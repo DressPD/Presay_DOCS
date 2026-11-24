@@ -6,7 +6,7 @@ Open the account menu and choose **Settings**.
 
 - **Display name**, used across your workspace.
 - **Email**, your sign-in address. It is managed by Amazon Cognito and shown read-only.
-- **Study usage**, with what you have used and when the next slot frees up. See [Limits & Usage](/account/limits.md).
+- **Study usage**, with what you have used and when the next slot frees up. See [Study Allowance](/account/limits.md).
 
 ## Appearance
 
@@ -34,4 +34,8 @@ Your target and audience are sent to AI models to simulate the personas and writ
 
 Imported audience files are not kept. Presay stores only the resulting demographic mix.
 
-You can delete any study, with its report and reactions, from the **Studies** list.
+### How long Presay keeps your data
+
+- **Studies, reactions and reports** are deleted automatically 365 days after the study was created.
+- **Images you upload as targets** are deleted after 90 days.
+- You can delete any study, with its report and reactions, sooner from the **Studies** list. This cannot be undone.
