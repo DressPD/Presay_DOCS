@@ -32,7 +32,8 @@ If Presay is not listed under Connected assistants, the sign-in did not finish: 
 
 ## Good to know
 
-- **Each person signs in once**, with their own Presay account. Studies count toward that person's own weekly and daily [allowance](/account/limits.md).
+- **It is free.** Presay costs nothing to use within the weekly and daily study [allowance](/account/limits.md) (currently 30 a week and 10 a day per account). HubSpot's own pricing is separate: running an agent can use HubSpot credits, depending on your HubSpot plan. See the [Terms of Service](https://presay.hyver.app/terms-of-service.html) and the [Privacy Notice](https://presay.hyver.app/privacy-policy.html).
+- **Each person signs in once**, with their own Presay account. Studies count toward that person's own weekly and daily allowance.
 - **The sign-in page** opens in your browser's language (English, German, Spanish, French, Italian or Portuguese). Choose **Create a free account** or **Forgot your password?** on it: both open in a new tab, so the sign-in stays open. The page stays valid for 15 minutes.
 - **The connection lasts a year** and renews itself while the agent is in use. After that, HubSpot asks you to connect again.
 - **To disconnect,** remove Presay in HubSpot, or choose **Disconnect** under **Settings, AI agents, Connected assistants** in Presay. Access ends at once.
