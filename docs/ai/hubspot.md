@@ -2,14 +2,12 @@
 
 Use Presay from HubSpot's AI agents in **Breeze**: run studies and read reports by asking the agent. You install Presay's HubSpot app once, finish a short setup on a Presay page, then add Presay to your agent. Each person signs in with their own Presay account. **There is nothing to copy or configure.**
 
-**In short:** get the install link → install the app → finish on the Presay page → add Presay to your Breeze agent → sign in.
+**In short:** open the install link → install the app → finish on the Presay page → add Presay to your Breeze agent → sign in.
 
 ## Before you start
 
 1. **A HubSpot account** with Breeze and permission to install apps (a Super Admin, or a user with the **HubSpot Marketplace access** permission).
-2. **The install link.** Presay's HubSpot app is in a private beta, so we send the link to each account.
-   - [Email us to request it](mailto:support@hyver.app?subject=Presay%20for%20HubSpot%3A%20install%20link&body=My%20HubSpot%20account%20ID%3A%20) with your **HubSpot account ID**: the number in HubSpot's web address after `/contacts/` (for example `app.hubspot.com/contacts/`**`1234567`**`/`).
-   - We reply with the link.
+2. **The install link:** [Install Presay in HubSpot](https://app-eu1.hubspot.com/oauth/authorize/user?client_id=8e65c830-8dd5-4005-83e7-b643c1fee47a&redirect_uri=https%3A%2F%2Fpresay.hyver.app%2Fhubspot). Presay is not on the HubSpot Marketplace yet, so HubSpot shows an **unverified app** warning: type **I accept the risk** to continue.
 3. **A Presay account** is free. You can create it on the page you reach after installing.
 
 ## Connect Presay
@@ -47,8 +45,8 @@ If Presay is not listed under Connected assistants, the sign-in did not finish: 
 | "That email and password do not match" | A typo or another account. Your email stays filled in: retype the password, or choose **Forgot your password?** |
 | "This sign-in page expired" | The window was open for more than 15 minutes. Choose **Connect and add** again |
 | Presay is not under Connected assistants | The sign-in did not finish. Repeat steps 4 and 5 |
-| No **MCP Servers** or **Connectors** tab under **Add tool** | The app is not installed in this account yet (step 1), or your HubSpot plan does not include Breeze agents. Email us |
-| The install link does not work | It is private to the account we approved. Email us your HubSpot account ID |
+| Presay is not listed under **MCP Servers** or **Connectors** | HubSpot shows Presay's server only in accounts where we have switched it on until its Marketplace review is finished. [Email us](mailto:support@hyver.app?subject=Presay%20for%20HubSpot%3A%20switch%20on&body=My%20HubSpot%20account%20ID%3A%20) your **HubSpot account ID** (the number in HubSpot's web address after `/contacts/`, for example `app.hubspot.com/contacts/`**`1234567`**`/`) and we will switch it on. Your HubSpot plan must also include Breeze agents |
+| The install link does not open, or HubSpot says the app cannot be installed | You need to be a Super Admin or have the **HubSpot Marketplace access** permission. If it still fails, email us the exact message |
 
 Still stuck? Email [support@hyver.app](mailto:support@hyver.app) with the exact message and the time.
 
