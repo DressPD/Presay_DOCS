@@ -18,7 +18,7 @@ You need a Presay account first. The assistant asks you to sign in with it and a
 | **Cursor** | Add `{"mcpServers": {"presay": {"url": "https://mcp.presay.hyver.app/mcp"}}}` to `~/.cursor/mcp.json`, then choose **Needs login** |
 | **Gemini CLI** | `gemini mcp add --transport http presay https://mcp.presay.hyver.app/mcp`, then `/mcp auth presay` |
 | **HubSpot** | See [Connect Presay in HubSpot](/ai/hubspot.md) |
-| **Salesforce, other apps** | See [Salesforce and other apps](/ai/crm.md) |
+| **Salesforce** | Not available yet, see [Salesforce](/ai/salesforce.md) |
 | **Other clients** | Transport **Streamable HTTP** at the URL above, auth **OAuth 2.1 with PKCE**. Discovery is automatic. |
 
 Client menus change between versions. **Settings, AI agents** in the web app has current step-by-step instructions with copy buttons, a test prompt and a **Connected** confirmation.

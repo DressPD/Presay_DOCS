@@ -24,7 +24,7 @@
 - AI Assistants
   - [Connect an Assistant (MCP)](ai/mcp.md)
   - [Connect Presay in HubSpot](ai/hubspot.md)
-  - [Salesforce and other apps](ai/crm.md)
+  - [Salesforce](ai/salesforce.md)
   - [Browser Extension](ai/extension.md)
 - Account
   - [Limits & Usage](account/limits.md)

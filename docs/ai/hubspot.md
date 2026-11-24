@@ -1,46 +1,56 @@
 # Connect Presay in HubSpot
 
-Run Presay studies and read reports from HubSpot's AI agents (Breeze, Agent Builder). You install Presay's HubSpot app once, then each person signs in with their own Presay account. There is **nothing to copy or configure**: no client ID, no secret, no server URL.
+Use Presay from HubSpot's AI agents (Breeze, Agent Builder): run studies and read reports by asking the agent. You install Presay's HubSpot app once. Then each person signs in with their own Presay account. **There is nothing to copy or configure.**
 
-> **Status: private beta.** The app works, but it is not on the HubSpot Marketplace yet, so HubSpot only lets us approve a limited number of accounts. **To get access, email [support@hyver.app](mailto:support@hyver.app) with your HubSpot account ID** and we will send you an install link. You need a HubSpot account that includes **Agent Builder**.
+**In short:** get the install link, install the app, add Presay as a tool to your agent, sign in.
 
-## Connect in four steps
+## Before you start
 
-1. **Install the app.** Open the install link, choose your HubSpot account and approve the app. HubSpot then sends you to Presay's **Settings, AI agents** page. That is expected: it only installs the app. **Nothing shows as connected yet**, because nobody has signed in to Presay.
-2. **Connect your Presay account.** In **Agent Hub**, **Agent Builder**, open the agent, choose **Configure**, **Add tool**, the **MCP Servers** category, and **Connect and add** for **Presay**.
-3. **Sign in.** Presay's sign-in page opens. Type your Presay email and password and choose **Sign in and allow** (pressing Enter does the same). Each person signs in once; studies use their own [allowance](/account/limits.md).
-4. **Try it.** Ask the agent: "List my Presay audiences".
+You need three things:
 
-## How you know it worked
+1. **A Presay account.** It is free. If you do not have one yet, you can create it during step 4.
+2. **A HubSpot account with Agent Builder**, and permission to install apps (a Super Admin, or a user with the **HubSpot Marketplace access** permission).
+3. **The install link.** Presay's HubSpot app is in a private beta, so we send the link to each account.
+   - [Email us to request it](mailto:support@hyver.app?subject=Presay%20for%20HubSpot%3A%20install%20link&body=My%20HubSpot%20account%20ID%3A%20) with your **HubSpot account ID**: the number in HubSpot's web address after `/contacts/` (for example `app.hubspot.com/contacts/`**`1234567`**`/`). You can also see it under your account name at the top right.
+   - We reply with a link. It works for your HubSpot account only.
 
-- In **HubSpot**, the agent's tool list shows **Presay**. Under **Settings, Integrations, Connected Apps** you can choose whether each tool is **Always allow**, **Ask permission** or **Never allow**.
-- In **Presay**, **Settings, AI agents** has a **HubSpot** tab with these steps. While it is open it shows **Connected: HubSpot** as soon as you sign in. **Connected assistants** lists **HubSpot** with a **Read and write** badge, the date you connected and the date access ends.
-- If there is no HubSpot row in Presay, the sign-in was not completed: nobody is connected, whatever HubSpot's install page said.
+## Connect Presay
 
-## What the sign-in page looks like
+1. **Install the app.** Open the install link, choose your HubSpot account and approve the app. HubSpot then opens a Presay **Settings** page. That is normal: this step only installs the app, and **Presay is not connected yet**.
+2. **Open your agent.** In HubSpot go to **Agent Hub**, then **Agent Builder**, and open the agent that should use Presay (or create one).
+3. **Add Presay as a tool.** Choose **Configure**, then **Add tool**. Open the **MCP Servers** category and choose **Connect and add** next to **Presay**.
+4. **Sign in to Presay.** A Presay sign-in window opens. Type your Presay email and password and choose **Sign in and allow** (pressing Enter does the same). HubSpot comes back with Presay connected.
+   - **No account yet?** Choose **Create a free account** on that page. It opens in a new tab: confirm your email, then return to the sign-in tab and sign in. The page stays valid for 15 minutes.
+5. **Try it.** Ask the agent: **"List my Presay audiences."**
 
-- It opens in your browser's language (English, German, Spanish, French, Italian or Portuguese), names **HubSpot** as the app asking, and lists what it can do: see your studies, reports and audiences, and run studies and save audiences. Each study counts toward your own weekly and daily allowance.
-- **New to Presay?** Choose **Create a free account** on that page. It opens in a new tab, so the sign-in stays open. Confirm your email, then come back to the first tab and sign in. The page stays valid for 15 minutes. If it has expired, choose **Connect and add** again in HubSpot.
-- **Forgot your password?** The link on the same page opens the reset page in a new tab.
-- After you sign in, Presay sends you straight back to HubSpot.
+## How to tell it worked
 
-## Staying connected
+- **In HubSpot:** the agent's tool list shows **Presay**. Under **Settings, Integrations, Connected Apps** you can set each tool to **Always allow**, **Ask permission** or **Never allow**.
+- **In Presay:** open **Settings, AI agents**. The guide shows **Connected: HubSpot**, and **Connected assistants** lists **HubSpot** with a **Read and write** badge and the date access ends.
 
-The connection lasts a year and renews itself while the agent is in use. After that, HubSpot asks you to connect again. You can disconnect sooner in HubSpot, or under **Settings, AI agents, Connected assistants** in Presay, where it appears as "HubSpot".
+If Presay is not listed under Connected assistants, the sign-in did not finish. Nobody is connected, whatever HubSpot's install page showed. Repeat steps 3 and 4.
+
+## Good to know
+
+- **Each person signs in once**, with their own Presay account. Studies count toward that person's own weekly and daily [allowance](/account/limits.md).
+- **The connection lasts a year** and renews itself while the agent is in use. After that, HubSpot asks you to connect again.
+- **To disconnect,** remove Presay in HubSpot, or choose **Disconnect** under **Settings, AI agents, Connected assistants** in Presay. Access ends at once.
+- **Studies use simulated respondents.** Treat what the agent reports as a directional signal. See [Limits of Synthetic Research](/limits.md).
 
 ## Troubleshooting
 
-| HubSpot says | What it means | What to do |
-| --- | --- | --- |
-| "Could not connect account because user denied access. The user declined" | The sign-in page was cancelled, so Presay gave HubSpot no access. Until 23 November 2026 this also happened by mistake when you pressed Enter after typing your password. That is fixed | Choose **Connect and add** again, then **Sign in and allow** |
-| The sign-in page says the email and password do not match | A typo or the wrong account. Your email stays filled in so you only retype the password | Retry, or use **Forgot your password?** |
-| "This sign-in page expired" | The page was open for more than 15 minutes | Choose **Connect and add** again |
-| Nothing under Connected assistants in Presay | The sign-in was not completed | Do steps 2 and 3 again |
+| You see | What to do |
+| --- | --- |
+| "Could not connect account because user denied access. The user declined" | The sign-in window was cancelled. Choose **Connect and add** again, then **Sign in and allow**. (Until 23 November 2026, pressing Enter after typing the password cancelled by mistake. That is fixed.) |
+| "That email and password do not match" | A typo or another account. Your email stays filled in: retype the password, or choose **Forgot your password?** |
+| "This sign-in page expired" | The window was open for more than 15 minutes. Choose **Connect and add** again |
+| Presay is not under Connected assistants | The sign-in did not finish. Repeat steps 3 and 4 |
+| You cannot see **MCP Servers** under **Add tool** | The app is not installed in this account yet, or your account does not include Agent Builder. Check step 1, or email us |
 
-If something else goes wrong, email [support@hyver.app](mailto:support@hyver.app) with the exact message and the time. HubSpot's MCP feature is in public beta and may change.
+Still stuck? Email [support@hyver.app](mailto:support@hyver.app) with the exact message and the time.
 
-Sources: HubSpot, [Connect apps to HubSpot's AI agents](https://knowledge.hubspot.com/integrations/customize-breeze-agents-with-hubspot-mcp-client) and [Connect external MCP servers to HubSpot agents (BETA)](https://developers.hubspot.com/docs/apps/developer-platform/add-features/mcp-server).
+HubSpot's MCP feature is in public beta and its menus may change. Source: HubSpot, [Connect external MCP servers to HubSpot agents](https://developers.hubspot.com/docs/apps/developer-platform/add-features/mcp-server).
 
 ## For developers
 
-HubSpot does not let a customer paste an MCP server URL. A server reaches its agents through an app that the server's owner builds once (an "MCP server component"), and Presay owns that app, so customers create no client. HubSpot sends a fixed client ID, uses PKCE (S256) and does not register clients dynamically. It needs an access token and a refresh token, discovery at `/.well-known/oauth-authorization-server` on the server's domain, and the callback `https://oauth-redirect.hubspot.com/callback/mcp_server`. Presay meets all of these with a Presay-owned public client.
+HubSpot does not let a customer paste an MCP server URL: a server reaches its agents through an app the server's owner builds once (an "MCP server component"). Presay owns that app, so customers create no client. HubSpot sends a fixed client ID, uses PKCE (S256) and does not register clients dynamically. It needs an access token and a refresh token, discovery at `/.well-known/oauth-authorization-server` on the server's domain, and the callback `https://oauth-redirect.hubspot.com/callback/mcp_server`. Presay meets all of these with a Presay-owned public client.
