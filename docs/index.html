@@ -44,9 +44,11 @@
       --link-color--hover: #96340e;
       --link-text-decoration: none;
 
-      --search-input-border-color: #e5e7eb;
+      --search-input-border-color: #8b8e96;
       --search-input-border-color--focus: #b94618;
       --search-input-background-color: #ffffff;
+      --search-input-color: #111827;
+      --search-input-placeholder-color: #5b6270;
 
       --blockquote-border-color: #b94618;
       --blockquote-background: rgba(185, 70, 24, 0.06);
@@ -81,9 +83,11 @@
       --sidebar-name-color: #f9fafb;
       --link-color: #f1793f;
       --link-color--hover: #ff9457;
-      --search-input-background-color: #1a1a1e;
-      --search-input-border-color: #2a2a30;
+      --search-input-background-color: #222227;
+      --search-input-border-color: #7a7d86;
       --search-input-border-color--focus: #f1793f;
+      --search-input-color: #f9fafb;
+      --search-input-placeholder-color: #a3a7b0;
       --code-theme-background: #17171a;
       --code-theme-text: #e5e7eb;
       --code-inline-background: rgba(241, 121, 63, 0.12);
@@ -99,6 +103,12 @@
     body, .sidebar-nav, .sidebar, input { font-family: var(--font-family) !important; }
     code, pre, pre code { font-family: var(--font-family-mono) !important; }
     .markdown-section h1, .markdown-section h2, .markdown-section h3, .app-name-link { font-family: var(--font-family-heading) !important; }
+
+    /* Search field: visible border + text in both themes */
+    .sidebar .search input { border: 1px solid var(--search-input-border-color) !important; border-radius: 8px !important; color: var(--search-input-color) !important; background-color: var(--search-input-background-color) !important; }
+    .sidebar .search input::placeholder { color: var(--search-input-placeholder-color) !important; opacity: 1; }
+    .sidebar .search input:focus { border-color: var(--search-input-border-color--focus) !important; box-shadow: 0 0 0 3px rgba(185, 70, 24, 0.22); outline: none; }
+    html[data-theme='dark'] .sidebar .search input:focus { box-shadow: 0 0 0 3px rgba(241, 121, 63, 0.28); }
 
     /* Sidebar */
     .sidebar { border-right: 1px solid var(--sidebar-border-color) !important; }
