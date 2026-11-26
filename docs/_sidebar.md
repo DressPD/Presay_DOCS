@@ -26,6 +26,7 @@
 - AI Assistants
   - [Connect an Assistant (MCP)](ai/mcp.md)
   - [Connect Presay in HubSpot](ai/hubspot.md)
+  - [Connect Presay in Copilot Studio](ai/copilot-studio.md)
   - [Salesforce](ai/salesforce.md)
   - [Browser Extension](ai/extension.md)
 - Account
